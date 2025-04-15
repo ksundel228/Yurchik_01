@@ -3,3 +3,7 @@ day[0-9]*/**/.vs/
 day[0-9]*/**/bin/
 day[0-9]*/**/obj/
 .vs/
+ #Files
+ *.zip
+ *.docx
+ *.doc
