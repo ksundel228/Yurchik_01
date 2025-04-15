@@ -1,0 +1,14 @@
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\bin\Debug\net9.0\zadanie_6.exe
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\bin\Debug\net9.0\zadanie_6.deps.json
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\bin\Debug\net9.0\zadanie_6.runtimeconfig.json
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\bin\Debug\net9.0\zadanie_6.dll
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\bin\Debug\net9.0\zadanie_6.pdb
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\obj\Debug\net9.0\zadanie_6.GeneratedMSBuildEditorConfig.editorconfig
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\obj\Debug\net9.0\zadanie_6.AssemblyInfoInputs.cache
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\obj\Debug\net9.0\zadanie_6.AssemblyInfo.cs
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\obj\Debug\net9.0\zadanie_6.csproj.CoreCompileInputs.cache
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\obj\Debug\net9.0\zadanie_6.dll
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\obj\Debug\net9.0\refint\zadanie_6.dll
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\obj\Debug\net9.0\zadanie_6.pdb
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\obj\Debug\net9.0\zadanie_6.genruntimeconfig.cache
+D:\3 курс\Практика С#\Юрчик_01\zadanie_6\obj\Debug\net9.0\ref\zadanie_6.dll
