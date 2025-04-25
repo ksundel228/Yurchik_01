@@ -76,6 +76,7 @@ namespace Zadanie2
             Console.WriteLine("Свойство c2 (класс B, конструктор 2): {0}\n", objB2.C2);
 
             Console.ReadLine();
+            
         }
     }
 }
