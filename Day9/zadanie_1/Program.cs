@@ -21,7 +21,7 @@ namespace InterfaceExample
         void F1();
     }
 
-    // Класс TestClass
+    // Класс TestClass, наследующий интерфейсы
     class TestClass : Ix, Iy, Iz
     {
         public double w;
@@ -35,39 +35,39 @@ namespace InterfaceExample
         // Реализация интерфейса Ix
         public void IxF0(double w)
         {
-            this.w = Math.Cos(w);
+            this.w = Math.Cos(w); // Возвращает cos(w)
             Console.WriteLine($"IxF0: Cos(w) = {this.w}");
         }
 
         public void IxF1()
         {
-            this.w = Math.Exp(w);
+            this.w = Math.Exp(w); // Возвращает exp(w)
             Console.WriteLine($"IxF1: Exp(w) = {this.w}");
         }
 
         // Неявная реализация интерфейсов Iy
         public void F0(double w)
         {
-            this.w = Math.Cos(w);
+            this.w = Math.Cos(w); // Возвращает cos(w)
             Console.WriteLine($"(Iy) F0: Cos(w) = {this.w}");
         }
 
         public void F1()
         {
-            this.w = Math.Exp(w);
+            this.w = Math.Exp(w); // Возвращает exp(w)
             Console.WriteLine($"(Iy) F1: Exp(w) = {this.w}");
         }
 
         // Явная реализация интерфейса Iz
         void Iz.F0(double w)
         {
-            this.w = 1 / Math.Exp(w);
+            this.w = 1 / Math.Exp(w); // Возвращает 1/exp(w)
             Console.WriteLine($"Iz.F0: 1/Exp(w) = {this.w}");
         }
 
         void Iz.F1()
         {
-            this.w = 1 / Math.Cos(w);
+            this.w = 1 / Math.Cos(w); // Возвращает 1/cos(w)
             Console.WriteLine($"Iz.F1: 1/Cos(w) = {this.w}");
         }
     }

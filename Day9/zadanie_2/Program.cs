@@ -1,56 +1,92 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ParkingSystem
 {
     // Класс, представляющий информацию об автомобиле
-    class Car
+    class Car : IComparable<Car>
     {
         public string LicensePlate { get; set; } // Госномер
         public string Color { get; set; } // Цвет
         public string OwnerLastName { get; set; } // Фамилия владельца
         public bool IsPresent { get; set; } // Признак присутствия на стоянке
+
+        // Реализация интерфейса IComparable
+        public int CompareTo(Car other)
+        {
+            return string.Compare(this.LicensePlate, other.LicensePlate, StringComparison.Ordinal);
+        }
+
+        // Перегрузка операций отношения
+        public static bool operator <(Car c1, Car c2) => c1.CompareTo(c2) < 0;
+        public static bool operator >(Car c1, Car c2) => c1.CompareTo(c2) > 0;
+        public static bool operator ==(Car c1, Car c2) => c1.CompareTo(c2) == 0;
+        public static bool operator !=(Car c1, Car c2) => !(c1 == c2);
+        public static bool operator <=(Car c1, Car c2) => c1.CompareTo(c2) <= 0;
+        public static bool operator >=(Car c1, Car c2) => c1.CompareTo(c2) >= 0;
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Car other)
+            {
+                return this.LicensePlate == other.LicensePlate;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return LicensePlate.GetHashCode();
+        }
     }
 
     // Класс "Автостоянка"
     class ParkingLot
     {
-        private Dictionary<int, Car> parkingSpaces; // Словарь мест и автомобилей
+        private Car[] parkingSpaces; // Массив автомобилей
+        private int count; // Количество занятых мест
 
-        public ParkingLot()
+        public ParkingLot(int size)
         {
-            parkingSpaces = new Dictionary<int, Car>();
+            parkingSpaces = new Car[size];
+            count = 0;
         }
 
         // Добавление автомобиля на стоянку
         public void AddCar(int spaceNumber, Car car)
         {
-            if (!parkingSpaces.ContainsKey(spaceNumber))
+            if (spaceNumber >= 0 && spaceNumber < parkingSpaces.Length)
             {
-                parkingSpaces[spaceNumber] = car;
-                Console.WriteLine($"Машина с госномером {car.LicensePlate} добавлена на место {spaceNumber}.");
+                if (parkingSpaces[spaceNumber] == null)
+                {
+                    parkingSpaces[spaceNumber] = car;
+                    count++;
+                    Console.WriteLine($"Машина с госномером {car.LicensePlate} добавлена на место {spaceNumber}.");
+                }
+                else
+                {
+                    Console.WriteLine($"Место {spaceNumber} уже занято!");
+                }
             }
             else
             {
-                Console.WriteLine($"Место {spaceNumber} уже занято!");
+                Console.WriteLine("Некорректный номер места!");
             }
         }
 
         // Поиск автомобиля по различным критериям
-        public List<Car> SearchCars(Func<Car, bool> criteria)
+        public Car[] SearchCars(Func<Car, bool> criteria)
         {
-            return parkingSpaces.Values.Where(criteria).ToList();
+            return Array.FindAll(parkingSpaces, car => car != null && criteria(car));
         }
 
         // Вывод списка присутствующих автомобилей
-        public List<Car> GetPresentCars()
+        public Car[] GetPresentCars()
         {
             return SearchCars(car => car.IsPresent);
         }
 
         // Вывод списка отсутствующих автомобилей
-        public List<Car> GetAbsentCars()
+        public Car[] GetAbsentCars()
         {
             return SearchCars(car => !car.IsPresent);
         }
@@ -58,17 +94,20 @@ namespace ParkingSystem
         // Получение информации о машине по номеру места
         public Car GetCarBySpace(int spaceNumber)
         {
-            return parkingSpaces.ContainsKey(spaceNumber) ? parkingSpaces[spaceNumber] : null;
+            return (spaceNumber >= 0 && spaceNumber < parkingSpaces.Length) ? parkingSpaces[spaceNumber] : null;
         }
 
         // Вывод информации обо всех автомобилях
         public void DisplayAllCars()
         {
-            foreach (var space in parkingSpaces)
+            for (int i = 0; i < parkingSpaces.Length; i++)
             {
-                var car = space.Value;
-                Console.WriteLine($"Место: {space.Key}, Госномер: {car.LicensePlate}, Цвет: {car.Color}, " +
-                                  $"Владелец: {car.OwnerLastName}, Присутствует: {car.IsPresent}");
+                var car = parkingSpaces[i];
+                if (car != null)
+                {
+                    Console.WriteLine($"Место: {i}, Госномер: {car.LicensePlate}, Цвет: {car.Color}, " +
+                                      $"Владелец: {car.OwnerLastName}, Присутствует: {car.IsPresent}");
+                }
             }
         }
     }
@@ -78,7 +117,9 @@ namespace ParkingSystem
     {
         static void Main(string[] args)
         {
-            ParkingLot parkingLot = new ParkingLot();
+            Console.Write("Введите количество мест на стоянке: ");
+            int parkingSize = int.Parse(Console.ReadLine());
+            ParkingLot parkingLot = new ParkingLot(parkingSize);
 
             while (true)
             {
@@ -125,12 +166,12 @@ namespace ParkingSystem
                         Console.Write("Введите значение для поиска: ");
                         string searchValue = Console.ReadLine();
 
-                        List<Car> foundCars = searchOption switch
+                        Car[] foundCars = searchOption switch
                         {
                             1 => parkingLot.SearchCars(car => car.LicensePlate == searchValue),
                             2 => parkingLot.SearchCars(car => car.Color == searchValue),
                             3 => parkingLot.SearchCars(car => car.OwnerLastName == searchValue),
-                            _ => new List<Car>()
+                            _ => new Car[0]
                         };
 
                         Console.WriteLine("Найденные машины:");
