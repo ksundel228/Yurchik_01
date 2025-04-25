@@ -75,6 +75,7 @@
             centerApartment.GetInfo();
 
             Console.ReadLine();
+            
         }
     }
 }
