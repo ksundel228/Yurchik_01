@@ -1,0 +1,112 @@
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinFormsTourism
+{
+    partial class Form1
+    {
+        private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnLoad, btnDelete, btnAdd, btnUpdate;
+        private System.Windows.Forms.Label lblTitle, lblTourName, lblDestination, lblPrice, lblFullName, lblPhone, lblEmail;
+        private System.Windows.Forms.TextBox txtTourName, txtDestination, txtPrice, txtFullName, txtPhone, txtEmail;
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            this.Text = "Управление турами";
+            this.ClientSize = new System.Drawing.Size(900, 600);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+
+            // Заголовок
+            this.lblTitle = CreateLabel("🗺️ Управление турами и туристами", new System.Drawing.Point(250, 15));
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 18F, FontStyle.Bold);
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+
+            // Кнопки
+            this.btnLoad = CreateStyledButton("Загрузить туры", new System.Drawing.Point(20, 100));
+            this.btnDelete = CreateStyledButton("Удалить тур", new System.Drawing.Point(20, 160));
+            this.btnAdd = CreateStyledButton("Добавить туриста", new System.Drawing.Point(20, 220));
+            this.btnUpdate = CreateStyledButton("Изменить туриста", new System.Drawing.Point(20, 280));
+
+            // Таблица
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1.Location = new System.Drawing.Point(250, 100);
+            this.dataGridView1.Size = new System.Drawing.Size(600, 400);
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+
+            // Поля ввода
+            this.lblTourName = CreateLabel("Название тура:", new System.Drawing.Point(20, 350));
+            this.txtTourName = CreateTextBox(new System.Drawing.Point(140, 350));
+
+            this.lblDestination = CreateLabel("Место:", new System.Drawing.Point(20, 390));
+            this.txtDestination = CreateTextBox(new System.Drawing.Point(140, 390));
+
+            this.lblPrice = CreateLabel("Цена:", new System.Drawing.Point(20, 430));
+            this.txtPrice = CreateTextBox(new System.Drawing.Point(140, 430));
+
+            // Поля ввода туриста
+            this.lblFullName = CreateLabel("ФИО:", new System.Drawing.Point(20, 470));
+            this.txtFullName = CreateTextBox(new System.Drawing.Point(140, 470));
+
+            this.lblPhone = CreateLabel("Телефон:", new System.Drawing.Point(20, 510));
+            this.txtPhone = CreateTextBox(new System.Drawing.Point(140, 510));
+
+            this.lblEmail = CreateLabel("Email:", new System.Drawing.Point(20, 550));
+            this.txtEmail = CreateTextBox(new System.Drawing.Point(140, 550));
+
+            // Добавление элементов
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.lblTourName);
+            this.Controls.Add(this.txtTourName);
+            this.Controls.Add(this.lblDestination);
+            this.Controls.Add(this.txtDestination);
+            this.Controls.Add(this.lblPrice);
+            this.Controls.Add(this.txtPrice);
+            this.Controls.Add(this.lblFullName);
+            this.Controls.Add(this.txtFullName);
+            this.Controls.Add(this.lblPhone);
+            this.Controls.Add(this.txtPhone);
+            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.txtEmail);
+            this.ResumeLayout(false);
+        }
+
+        private Button CreateStyledButton(string text, System.Drawing.Point location)
+        {
+            Button btn = new Button();
+            btn.Text = text;
+            btn.Font = new System.Drawing.Font("Segoe UI", 12F, FontStyle.Regular);
+            btn.Size = new System.Drawing.Size(200, 40);
+            btn.Location = location;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = System.Drawing.Color.SteelBlue;
+            btn.ForeColor = System.Drawing.Color.White;
+            return btn;
+        }
+
+        private Label CreateLabel(string text, System.Drawing.Point location)
+        {
+            Label lbl = new Label();
+            lbl.Text = text;
+            lbl.Font = new System.Drawing.Font("Segoe UI", 12F, FontStyle.Regular);
+            lbl.ForeColor = System.Drawing.Color.Black;
+            lbl.Location = location;
+            lbl.Size = new System.Drawing.Size(300, 25);
+            return lbl;
+        }
+
+        private TextBox CreateTextBox(System.Drawing.Point location)
+        {
+            TextBox txt = new TextBox();
+            txt.Size = new System.Drawing.Size(150, 25);
+            txt.Location = location;
+            return txt;
+        }
+    }
+}
